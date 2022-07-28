@@ -185,3 +185,13 @@ JOIN PortfolioProject ..CovidVaccinations v
 --Examine the created View
 SELECT *
 FROM PercentPeopleVaccinated
+
+--Total Death Count Revised!
+SELECT 
+	 location
+	,SUM(cast(new_deaths as int)) as TotalDeathCount
+FROM PortfolioProject .dbo.CovidDeaths
+WHERE continent is null AND location not in ('Upper middle income', 'Lower middle income', 'High income', 'Low income','World', 'European Union', 'International')
+GROUP BY location
+ORDER BY TotalDeathCount DESC
+
